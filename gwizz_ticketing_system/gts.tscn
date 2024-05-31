@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://i2ppop0tf8iy"]
+
+[ext_resource type="Script" path="res://addons/gwizz_ticketing_system/ticket.gd" id="1_hneng"]
+
+[node name="Gwizz Ticket System" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hneng")
+
+[node name="Description" type="TextEdit" parent="."]
+layout_mode = 2
+offset_right = 250.0
+offset_bottom = 200.0
+size_flags_vertical = 4
+placeholder_text = "Describe your problem:"
+wrap_mode = 1
+
+[node name="Email" type="TextEdit" parent="."]
+layout_mode = 2
+offset_top = 200.0
+offset_right = 250.0
+offset_bottom = 250.0
+size_flags_vertical = 4
+placeholder_text = "Email"
+
+[node name="Submit" type="Button" parent="."]
+layout_mode = 2
+offset_top = 250.0
+offset_right = 167.0
+offset_bottom = 281.0
+text = "SUBMIT"
+
+[node name="Result" type="TextEdit" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 285.0
+offset_right = 250.0
+offset_bottom = 549.0
+editable = false
+wrap_mode = 1
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="Submit" to="." method="_on_submit_pressed"]
