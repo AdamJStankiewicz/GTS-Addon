@@ -1,6 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://i2ppop0tf8iy"]
+[gd_scene load_steps=5 format=3 uid="uid://i2ppop0tf8iy"]
 
 [ext_resource type="Script" path="res://addons/gwizz_ticketing_system/ticket.gd" id="1_hneng"]
+[ext_resource type="Texture2D" uid="uid://cbu5r2fesjutt" path="res://addons/gwizz_ticketing_system/gts-logo.png" id="2_pvar3"]
+
+[sub_resource type="Animation" id="Animation_hntit"]
+resource_name = "Submit"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gts-logo:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(0.6, 0.6), Vector2(0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gts-logo:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(124, 126), Vector2(124, 126), Vector2(124, 147), Vector2(125, -126)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gts-logo:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6yj5k"]
+_data = {
+"Submit": SubResource("Animation_hntit")
+}
 
 [node name="Gwizz Ticket System" type="Control"]
 layout_mode = 3
@@ -40,5 +86,16 @@ editable = false
 wrap_mode = 1
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Gts-logo" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(125, -126)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_pvar3")
+
+[node name="Submit-Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6yj5k")
+}
 
 [connection signal="pressed" from="Submit" to="." method="_on_submit_pressed"]

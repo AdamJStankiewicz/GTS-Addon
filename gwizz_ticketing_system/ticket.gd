@@ -3,12 +3,13 @@ extends Control
 
 var url = "http://70.92.29.228:1477/upload"
 
+@onready var anim = $"Submit-Animation"
 @onready var description = $Description
 @onready var email = $Email
 @onready var result_field = $Result
 
-
 @onready var http_request = $HTTPRequest
+
 
 func _ready():
 	http_request.request_completed.connect(_on_request_completed)
@@ -36,6 +37,7 @@ func _on_request_completed(result, response_code, headers, body):
 	
 	match json["status"]:
 		"0":
+			anim.play("Submit")
 			result_field.text = str("Ticket submitted!\nHere is your\nTicket ID:\n",  json["id"])
 		"1":
 			result_field.text = str("Sorry! Email already has an open ticket\nTicket ID:\n",  json["id"])
