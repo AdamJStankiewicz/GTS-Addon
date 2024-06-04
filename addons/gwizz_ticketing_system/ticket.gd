@@ -40,9 +40,11 @@ func _on_request_completed(result, response_code, headers, body):
 			anim.play("Submit")
 			result_field.text = str("Ticket submitted!\nHere is your\nTicket ID:\n",  json["id"])
 		"1":
-			result_field.text = str("Sorry! Email already has an open ticket\nTicket ID:\n",  json["id"])
+			result_field.text = str("Error: Email is not valid.")
+		"2":
+			result_field.text = str("Error: Email already has an open ticket\nTicket ID:\n",  json["id"])
 		_:
-			result_field.text = str("ok something really weird happened. The only value the server can send back is either a 0, or a 1. And somehow you got neither. I'd suggest contacting a priest or the government or something idk.")
+			result_field.text = str("ok something really weird happened. The only value the server can send back is either a 0, 1, or a 2. And somehow you got neither. I'd suggest contacting a priest or the government or something idk.")
 	
 	
 	result_field.show()
