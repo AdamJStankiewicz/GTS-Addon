@@ -1,7 +1,7 @@
 @tool
 extends Control
 
-var url = "http://70.92.29.228:1477/upload"
+var url = "http://98.235.167.45:1477/upload"
 
 @onready var anim = $"Submit-Animation"
 @onready var description = $Description
